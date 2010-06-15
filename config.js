@@ -11,7 +11,7 @@ var config_page = {
 
     submit_delete_creds: function() {
         $.post(
-            base_url + 'config/Highrise-VBX?op=delete_credentials',
+            base_url + 'config/HighriseVoicemail-VBX?op=delete_credentials',
             function(resp) {
                 resp = resp.match(/JSON_DATA\>(.*)\<\/JSON_DATA/)[1];
                 $('input[name="highrise_url"]').val('');
@@ -43,7 +43,7 @@ var config_page = {
         if(errors.length == 0) {
             $('div.system_msg').html('<a class="ajax_loader"></a> Testing your credentials.');
             $.post(
-                base_url + 'config/Highrise-VBX?op=test_credentials',
+                base_url + 'config/HighriseVoicemail-VBX?op=test_credentials',
                 { url:url_el.val(), token:token_el.val(), password:password_el.val(), timezone:timezone },
                 function(resp) {
                     try {
@@ -55,7 +55,7 @@ var config_page = {
                         sys_msg_type = resp.type;
 
                         if(resp.key == 'SUCCESS') $('a.delete_creds_btn').css('display', 'inline-block');
-                    } catch(e) { sys_msg = 'Cannot validate your credentials due to an exception error.'; sys_msg_type = 'error'; }
+                    } catch(e) { sys_msg = 'Cannot validate your credentials due to an exception error.'; sys_msg_type = 'error'; console.log(e); }
 
                     $('div.system_msg').html(sys_msg).css('color', sys_msg_type == 'error' ? 'red' : 'green');
                 },
