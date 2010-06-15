@@ -1,6 +1,6 @@
 <?php
 $CI =& get_instance();
-$highrise_user = PluginStore::get('highrise_user');
+$highrise_vm_user = PluginStore::get('highrise_vm_user');
 $currentlyIsUser = AppletInstance::getUserGroupPickerValue('dial-target') instanceof VBX_User; 
 $dial_target = AppletInstance::getValue('dial-target', 'user-or-group');
 ?>
@@ -13,7 +13,7 @@ span[class$="err"] { color:red; }
 </style>
 
 <div class="vbx-applet highrise_voicemail_applet">
-    <?php if(empty($highrise_user)): ?>
+    <?php if(empty($highrise_vm_user)): ?>
     <div id="highrise_api_access" class="section">
         <h2>Highrise API Access</h2>
         <p>It looks like you are setting up for the first time. Please enter your access credentials so we can sync with Highrise.</p>
@@ -37,7 +37,7 @@ span[class$="err"] { color:red; }
         </div>
 
         <div style="line-height:30px;">
-            <button class="inline-button submit-button highrise_test_creds_btn" style="margin-top:5px; vertical-align:center;">
+            <button class="inline-button submit-button" style="margin-top:5px; vertical-align:center;">
                 <span>Test</span>
             </button>
             <div class="system_msg"></div>
@@ -71,5 +71,5 @@ span[class$="err"] { color:red; }
 
 <script>
 var base_url = '<?php echo base_url() ?>';
-var highrise_user_data = <?php echo empty($highrise_user) ? 'false' : 'true' ?>;
+var highrise_vm_user_data = <?php echo empty($highrise_vm_user) ? 'false' : 'true' ?>;
 </script>

@@ -1,5 +1,5 @@
 <?php
-include('plugins/Highrise-VBX/highrise.php');
+include('plugins/HighriseVoicemail-VBX/highrise.php');
 
 $CI =& get_instance();
 $status = @$_REQUEST['status'];
@@ -7,16 +7,16 @@ $flow = @AppletInstance::getFlow();
 $flow_id = $flow->id;
 $instance_id = AppletInstance::getInstanceId();
 $dial_target = AppletInstance::getUserGroupPickerValue('dial-target'); // get the prompt that the user configured
-$highrise_user = PluginData::get('highrise_user');
+$highrise_vm_user = PluginData::get('highrise_vm_user');
 
 $response = new Response(); // start a new Twiml response
 
 // Finish this up by transcribing
 if(!empty($_REQUEST['TranscriptionText'])) {
-    define('HIGHRISE_URL', $highrise_user->url);
-    define('HIGHRISE_TOKEN', $highrise_user->token);
-    define('HIGHRISE_PASSWORD', $highrise_user->password);
-    define('HIGHRISE_TIMEZONE', (int) $highrise_user->timezone);
+    define('HIGHRISE_URL', $highrise_vm_user->url);
+    define('HIGHRISE_TOKEN', $highrise_vm_user->token);
+    define('HIGHRISE_PASSWORD', $highrise_vm_user->password);
+    define('HIGHRISE_TIMEZONE', (int) $highrise_vm_user->timezone);
 
     $chk_people = highrise_client('/people/search.xml?criteria[phone]='.$_REQUEST['Caller']);
 

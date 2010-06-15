@@ -31,9 +31,6 @@ if($op == 'test_credentials')
         $results = curl_exec($ch);
         $ch_info = curl_getinfo($ch);
 
-        error_log('RESULTS: '.json_encode($results));
-        error_log('INFO: '.json_encode($ch_info));
-
         if(!$results) {
             $curl_error = curl_error($ch);
             if($curl_error != "couldn't connect to host") {
@@ -181,6 +178,6 @@ div.system_msg > * { vertical-align:middle; }
 var base_url = '<?php echo base_url() ?>';
 </script>
 
-<?php $CI->template->add_js('plugins/Highrise-VBX/config.js') ?>
+<?php $CI->template->add_js('plugins/HighriseVoicemail-VBX/config.js') ?>
 
 <?php endif; ?>
