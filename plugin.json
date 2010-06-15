@@ -1,0 +1,5 @@
+{
+    "name" : "Highrise Voicemail",
+    "author" : "Will Tran <wtran@twilio.com>",
+    "description" : "Voicemails will also be saved to Highrise and attached to their specific persons."
+}
