@@ -1,0 +1,6 @@
+Highrise Voicemail OpenVBX Plugin
+by Will Tran <wtran@twilio.com>
+June 14, 2010
+-----
+
+This will leave a voicemail in both OpenVBX and Highrise. If the contact is not in Highrise, it will not be saved in Highrise.
