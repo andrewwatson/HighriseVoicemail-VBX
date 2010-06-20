@@ -278,6 +278,7 @@ function highrise_new_task($data)
     if($data['frame']) $xml .= '<frame>'.$data['frame'].'</frame>';
     if($data['subject_id']) $xml .= '<subject-id>'.$data['subject_id'].'</subject-id>';
     if($data['subject_type']) $xml .= '<subject-type>'.$data['subject_type'].'</subject-type>';
+    if($data['recording_id']) $xml .= '<recording-id>'.$data['recording_id'].'</recording-id>';
     $xml .= '</task>';
 
     $new_task = highrise_client('/tasks.xml', 'POST', $xml);

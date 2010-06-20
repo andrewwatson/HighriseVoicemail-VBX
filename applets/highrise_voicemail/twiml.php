@@ -20,7 +20,7 @@ if(!empty($_REQUEST['TranscriptionText'])) {
 
     // Note body
     $body = 
-        'New Voicemail From '.format_phone($_REQUEST['Caller']).' on '.gmdate('M d g:i a', gmmktime() + (60*60*HIGHRISE_TIMEZONE)).":\n".
+        'New Voicemail from '.format_phone($_REQUEST['Caller']).' on '.gmdate('M d g:i a', gmmktime() + (60*60*HIGHRISE_TIMEZONE)).":\n".
         '"'.$_REQUEST['TranscriptionText']."\"\n".
         $_REQUEST['RecordingUrl'].'.mp3';
 
@@ -30,12 +30,11 @@ if(!empty($_REQUEST['TranscriptionText'])) {
     if(!empty($chk_people->person)) {
         if(is_array($chk_people->person)) {
             foreach($chk_people->person as $person) {
-                highrise_new_note(array( 'body'=>$body, 'subject_type'=>'Party', 'subject_id'=>$person->id ));
+                $new_note = highrise_new_note(array( 'body'=>$body, 'subject_type'=>'Party', 'subject_id'=>$person->id ));
                 highrise_new_task(array(
                     'body' => 'Call back '.format_phone($_REQUEST['Caller'].' back').' - '.gmdate('M d g:i a', gmmktime() + (60*60*HIGHRISE_TIMEZONE)),
                     'frame' => 'today',
-                    'subject_id' => $person->id,
-                    'subject_type' => 'Party'
+                    'recording_id' => $new_note->id
                 ));
             }
         } else {
@@ -44,11 +43,10 @@ if(!empty($_REQUEST['TranscriptionText'])) {
                 'subject_type' => 'Party', 
                 'subject_id' => $chk_people->person->id 
             ));
-            $new_task = highrise_new_task(array(
+            highrise_new_task(array(
                 'body' => 'Call back '.format_phone($_REQUEST['Caller'].' back').' - '.gmdate('M d g:i a', gmmktime() + (60*60*HIGHRISE_TIMEZONE)),
                 'frame' => 'today',
-                'subject_id' => $chk_people->person->id,
-                'subject_type' => 'Party'
+                'recording_id' => $new_note->id
             ));
         }
 
@@ -62,11 +60,10 @@ if(!empty($_REQUEST['TranscriptionText'])) {
         ));
 
         $new_note = highrise_new_note(array( 'body'=>$body, 'subject_type'=>'Party', 'subject_id'=>$new_person->id ), $_REQUEST);
-        $new_task = highrise_new_task(array(
+        highrise_new_task(array(
             'body' => 'Call back '.format_phone($_REQUEST['Caller'].' back').' - '.gmdate('M d g:i a', gmmktime() + (60*60*HIGHRISE_TIMEZONE)),
             'frame' => 'today',
-            'subject_id' => $new_person->person->id,
-            'subject_type' => 'Party'
+            'recording_id' => $new_note->id
         ));
     }
 
