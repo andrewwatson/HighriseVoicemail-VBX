@@ -1,7 +1,12 @@
 <?php
 $CI =& get_instance();
+$plugin = OpenVBX::$currentPlugin;
 $op = @$_REQUEST['op'];
 $highrise_vm_user = PluginData::get('highrise_vm_user');
+
+if(!function_exists('json_encode')) {
+    include($plugin->plugin_path.'/vendors/json.php');
+}
 
 if($op == 'test_credentials') 
 { // {{{
@@ -178,6 +183,6 @@ div.system_msg > * { vertical-align:middle; }
 var base_url = '<?php echo base_url() ?>';
 </script>
 
-<?php $CI->template->add_js('plugins/HighriseVoicemail-VBX/config.js') ?>
+<?php OpenVBX::addJS('config.js') ?>
 
 <?php endif; ?>
