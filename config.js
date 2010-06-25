@@ -4,6 +4,10 @@ if(typeof String.prototype.trim !== 'function') {
     }
 }
 
+var highrise_voicemail_app = {
+    version: 1.0
+}
+
 var config_page = {
     initialize: function() {
         config_page.render();

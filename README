@@ -1,6 +1,10 @@
-Highrise Voicemail OpenVBX Plugin
+Highrise Voicemail OpenVBX Plugin v1.0
 by Will Tran <wtran@twilio.com>
-June 14, 2010
------
+June 25, 2010
+----
 
-This will leave a voicemail in both OpenVBX and Highrise. If the contact is not in Highrise, it will not be saved in Highrise.
+This will leave a voicemail in both OpenVBX and Highrise. If the contact is not in Highrise, it will not be saved in Highrise. Included is the Highrise Flow applet, which will redirect the incoming caller if they are in the directory.
+
+v1.0 June 25, 2010
+----
+- AJAX authenication of Highrise

@@ -1,13 +1,16 @@
 <?php
-include('plugins/HighriseVoicemail-VBX/highrise.php');
-
 $CI =& get_instance();
+$plugin = OpenVBX::$currentPlugin;
+$plugin = $plugin->getInfo();
+$plugin_url = base_url().'plugins/'.$plugin['dir_name'];
 $status = @$_REQUEST['status'];
 $flow = @AppletInstance::getFlow();
 $flow_id = $flow->id;
 $instance_id = AppletInstance::getInstanceId();
 $dial_target = AppletInstance::getUserGroupPickerValue('dial-target'); // get the prompt that the user configured
 $highrise_vm_user = PluginData::get('highrise_vm_user');
+
+include($plugin['plugin_path'].'/highrise.php');
 
 $response = new Response(); // start a new Twiml response
 
