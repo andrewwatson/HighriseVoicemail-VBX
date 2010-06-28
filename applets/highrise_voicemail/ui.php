@@ -1,6 +1,7 @@
 <?php
 $CI =& get_instance();
-$highrise_vm_user = PluginStore::get('highrise_vm_user');
+$plugin_info = $plugin->getInfo();
+$highrise_vm_user = PluginData::get('highrise_vm_user');
 $currentlyIsUser = AppletInstance::getUserGroupPickerValue('dial-target') instanceof VBX_User; 
 $dial_target = AppletInstance::getValue('dial-target', 'user-or-group');
 ?>
@@ -72,4 +73,5 @@ span[class$="err"] { color:red; }
 <script>
 var base_url = '<?php echo base_url() ?>';
 var highrise_vm_user_data = <?php echo empty($highrise_vm_user) ? 'false' : 'true' ?>;
+var plugin_dir = '<?php echo $plugin_info['dir_name'] ?>';
 </script>
